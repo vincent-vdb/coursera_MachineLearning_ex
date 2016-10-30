@@ -53,8 +53,15 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+%[myFirsttheta] = trainLinearReg(X(1,:), y(1), lambda);
+%error_train(1) = 1/(2*1)*sum((X(1,:)*myFirsttheta - y(1)).^2);
+%error_val(1) = 1/(2*size(Xval,1))*sum((Xval*myFirsttheta - yval).^2);
 
-
+for i = 2:m
+  [mytheta] = trainLinearReg(X(1:i,:), y(1:i), lambda);
+  error_train(i) = 1/(2*i)*sum((X(1:i,:)*mytheta - y(1:i)).^2);
+  error_val(i) = 1/(2*size(Xval,1))*sum((Xval*mytheta - yval).^2);
+end
 
 
 
